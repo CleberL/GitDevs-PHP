@@ -18,8 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //Route::resource('dev','DevController');
-Route::post('dev/{username}', 'DevController@store')->name('store');
-Route::get('dev/', 'DevController@index')->name('index');
-Route::get('dev/{username}', 'DevController@search')->name('search');
-Route::delete('dev/{username}', 'DevController@delete')->name('delete');
-
+Route::middleware('cors')->group(function(){
+    Route::post('dev/{username}', 'DevController@store')->name('store');
+    Route::get('dev/', 'DevController@index')->name('index');
+    Route::get('dev/{username}', 'DevController@search')->name('search');
+    Route::delete('dev/{username}', 'DevController@delete')->name('delete');
+ });
